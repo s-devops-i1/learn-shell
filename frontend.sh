@@ -5,7 +5,13 @@ rm -rf /usr/share/nginx/html/*
 cp expense.conf /etc/nginx/default.d/expense.conf
 rm -rf /tmp/frontend.zip
 curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
-unzip /tmp/frontend.zip
+frnt_end_file=/tmp/frontend.zip
+if [ -s "${frnt_end_file}"  ]; then
+  echo "frontend contents downloaded"
+  else
+   unzip /tmp/frontend.zip
+fi
+
 cd /usr/share/nginx/html
 
 systemctl restart nginx

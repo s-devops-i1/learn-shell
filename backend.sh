@@ -29,7 +29,12 @@ print_task_heading(){
      echo -e "\e[32mFailure\e[0m"
   fi
 }
-useradd expense
+UID=$(id)
+if [ "${UID}" != 0 ]; then
+   useradd expense
+ else
+   echo "User Already Exists"
+fi
 print_task_heading(){
   if [ $? = 0 ]; then
       echo -e "\e[32mSuccess\e[0m"
@@ -37,6 +42,7 @@ print_task_heading(){
      echo -e "\e[32mFailure\e[0m"
   fi
 }
+rm -rf /app
 mkdir /app
 print_task_heading(){
   if [ $? = 0 ]; then
@@ -118,5 +124,5 @@ print_task_heading(){
      echo -e "\e[32mFailure\e[0m"
   fi
 }
-mysql -h 172.31.45.99 -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h 172.31.33.255 -uroot -pExpenseApp@1 < /app/schema/backend.sql
 

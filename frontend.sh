@@ -19,13 +19,14 @@ fi
 
 systemctl restart nginx
 EOF
-dnf install nginx -y
-systemctl enable nginx
+
+dnf install nginx -y  &>>$/tmp/expense.log
+systemctl enable nginx &>>$/tmp/expense.log
 systemctl start nginx
 rm -rf /usr/share/nginx/html/*
-curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip &>>$/tmp/expense.log
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
-
+unzip /tmp/frontend.zip &>>$/tmp/expense.log
+systemctl restart nginx &>>$/tmp/expense.log
 
 

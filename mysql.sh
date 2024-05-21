@@ -4,4 +4,4 @@ systemctl enable mysqld &>>/tmp/expense.log
 echo $?
 systemctl start mysqld &>>/tmp/expense.log
 echo $?
-mysql_secure_installation --set-root-pass ExpenseApp@1
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>/tmp/expense.log

@@ -100,7 +100,7 @@ print_task_heading(){
      echo -e "\e[32mFailure\e[0m"
   fi
 }
-systemctl enable backend
+systemctl enable backend &>>/tmp/expense.log
 print_task_heading(){
   if [ $? = 0 ]; then
       echo -e "\e[32mSuccess\e[0m"
@@ -116,7 +116,7 @@ print_task_heading(){
      echo -e "\e[32mFailure\e[0m"
   fi
 }
-dnf install mysql -y
+dnf install mysql -y &>>/tmp/expense.log
 print_task_heading(){
   if [ $? = 0 ]; then
       echo -e "\e[32mSuccess\e[0m"
@@ -124,5 +124,5 @@ print_task_heading(){
      echo -e "\e[32mFailure\e[0m"
   fi
 }
-mysql -h 172.31.33.255 -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h 172.31.33.255 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>/tmp/expense.log
 
